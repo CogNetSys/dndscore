@@ -1,4 +1,10 @@
+coreferee
+nltk
 numpy
 pandas
+python-dotenv
 scikit-learn
+smolagents
+spacy
 jupyter
+sentence-transformers

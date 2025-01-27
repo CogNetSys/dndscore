@@ -1,0 +1,12 @@
+[subject] is a person.
+[subject] is human.
+[subject] exists.
+[subject] breathes.
+[subject] has a name.
+[subject] is known to someone.
+[subject] has done something.
+[subject] has achieved something.
+[subject] has some abilities.
+[subject] is famous.
+[subject] is important.
+[subject] is well-known.

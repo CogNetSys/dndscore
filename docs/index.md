@@ -15,3 +15,14 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+
+
+Goals:
+
+1. Get rid of all hallucinations and misinterpretation.
+2. Make sure that 99% of the facts are in the final summary report.
+
+Old method:
+
+1. Decompose
+2. Verfiy decomposed elements.
