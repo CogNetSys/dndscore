@@ -1,10 +1,13 @@
-coreferee
+cython
+jupyter
 nltk
 numpy
 pandas
 python-dotenv
 scikit-learn
-smolagents
-spacy
-jupyter
 sentence-transformers
+setuptools
+spacy
+thinc==8.1.0
+wheel
+coreferee

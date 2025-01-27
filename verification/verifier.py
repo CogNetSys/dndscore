@@ -1,5 +1,5 @@
 # verification/verifier.py
-import os
+
 from typing import List, Dict
 from transformers import pipeline
 
@@ -21,14 +21,14 @@ def dndscore_verify(subclaim: str, decontext_claim: str, knowledge_source: List[
     try:
         for result in knowledge_source:
             premise = result.get('snippet', '')
-            hypothesis = decontext_claim
+            hypothesis = decontext_claim  # Use the decontextualized claim for verification
 
             # Perform entailment prediction
             prediction = entailment_pipeline(f"{premise} </s></s> {hypothesis}", truncation=True, max_length=512)
             label = prediction[0]['label']
             score = prediction[0]['score']
 
-            if label == 'ENTAILMENT' and score > 0.7:
+            if label == 'ENTAILMENT' and score > 0.7:  # Using entailment label and a threshold
                 return True
 
         return False

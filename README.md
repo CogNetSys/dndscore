@@ -1,3 +1,4 @@
+```
 dndscore/
 │
 ├── decomposition/        # DR-ND logic (ChatGPT's current focus)
@@ -16,3 +17,30 @@ dndscore/
 ├── test_sentences.txt    # Test sentences for decomposition
 ├── README.md             # Project description
 └── requirements.txt      # Python dependencies
+```
+
+
+Workflow for Running Your Project
+1. Start the Docker Container:
+
+```bash
+docker run -it --rm -v $(pwd):/app coreferee-env bash
+```
+
+2. Navigate to /app:
+
+```bash
+cd /app
+```
+
+3. Activate the venv inside the container:
+
+```bash
+source venv/bin/activate
+```
+
+4. Run your scripts or programs:
+
+```bash
+python your_script.py
+```
