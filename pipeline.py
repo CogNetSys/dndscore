@@ -1,4 +1,3 @@
-# pipeline.py
 import os
 import sys
 
@@ -9,11 +8,9 @@ sys.path.insert(0, project_root)
 from decomposition.decomposition_module import decompose_sentence
 from decontextualization.decontext_module import decontextualize_with_llama3 as decontextualize
 from core.core_module import CORE
-from verification.verifier import dndscore_verify  # Added import
+from verification.verifier import dndscore_verify
 from typing import List, Tuple, Dict, Union
 import nltk
-from nltk.tokenize import sent_tokenize  # Added import
-import json
 from templates.WebSearchAgent import search
 
 # Ensure NLTK data is downloaded
@@ -43,6 +40,10 @@ class FactCheckingPipeline:
         # Load bleached claims
         with open(bleached_claims_file, 'r', encoding='utf-8') as f:
             self.bleached_claims = [line.strip() for line in f if line.strip()]
+
+        # Initialize Decontextualizer to use Llama 3 8B
+        # self.decontextualizer = Decontextualizer(model_name="meta-llama/Llama-3-8b-chat-hf")
+        # self.decontextualizer = Decontextualizer()
 
         # Initialize WebSearchAgent
         self.api_key = api_key
@@ -78,7 +79,7 @@ class FactCheckingPipeline:
         # 3. Decontextualization
         decontextualized_subclaims = []
         for sentence, subclaim in all_subclaims:
-            decontext_claim = decontextualize(subclaim, sentence)
+            decontext_claim = decontextualize(subclaim, sentence, openai_key=self.api_key)
             decontextualized_subclaims.append(decontext_claim)
         print(f"Decontextualized {len(decontextualized_subclaims)} subclaims.")
 
@@ -143,7 +144,7 @@ class FactCheckingPipeline:
             A list of sentences.
         """
         return sent_tokenize(text)
-    
+
     def formulate_search_query(self, subclaim: str, context: str) -> str:
         """
         Formulates a search query based on the subclaim and context.
@@ -155,8 +156,8 @@ class FactCheckingPipeline:
         Returns:
             A search query string.
         """
-        # Basic implementation: Use the decontextualized subclaim as the query
-        query = subclaim
+        # Basic implementation: Combine subclaim and context as the query
+        query = f"{subclaim} {context}"
 
         # Advanced implementation: Use an LLM to generate a more sophisticated query
         # prompt = f"Generate a search query to verify the following subclaim:\nSubclaim: {subclaim}\nContext: {context}\nQuery:"

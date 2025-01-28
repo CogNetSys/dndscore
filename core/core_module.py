@@ -1,6 +1,5 @@
-# core/core_module.py
 import numpy as np
-from typing import List
+from typing import List, Dict, Tuple
 from sentence_transformers import SentenceTransformer
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 import torch

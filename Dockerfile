@@ -1,14 +1,14 @@
-FROM python:3.9-slim
+FROM huggingface/transformers-pytorch-gpu:latest
 
-# Update and install required system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    g++ \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
-# Upgrade pip and install coreferee dependencies
-RUN pip install --upgrade pip setuptools wheel
+# Install additional Python dependencies (if needed)
+RUN pip install --no-cache-dir \
+    allennlp \
+    allennlp-models
 
-# Install thinc and coreferee
-RUN pip install thinc coreferee
+# Copy your application code
+COPY . .
+
+# Set the default command to run your test script
+CMD ["python", "tester.py"]

@@ -24,7 +24,7 @@ Workflow for Running Your Project
 1. Start the Docker Container:
 
 ```bash
-docker run -it --rm -v $(pwd):/app coreferee-env bash
+docker run --gpus all -it dndscore-coref-fixed
 ```
 
 2. Navigate to /app:
@@ -36,7 +36,7 @@ cd /app
 3. Activate the venv inside the container:
 
 ```bash
-source venv/bin/activate
+source newenv/bin/activate
 ```
 
 4. Run your scripts or programs:
